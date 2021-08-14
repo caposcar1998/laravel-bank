@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class HomepageController extends Controller
 {
     public function index() {
-        return 'hello-world';
+        $account = \App\Models\Account::find(1);
+        return view('homepage.index', ['account' => $account]);
     }
 }
