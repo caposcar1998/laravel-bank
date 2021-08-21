@@ -7,8 +7,10 @@
     <title>Laboratorio</title>
     <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
 </head>
-<body>
-    @yield('content')
+<body class="c-app flex-row">
+    <div class="container">
+        @yield('content')
+    </div>
     <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
 </body>
 </html>
