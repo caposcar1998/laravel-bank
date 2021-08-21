@@ -4,10 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    /**
+     * Logs the user out.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $req)
+    {
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect()->route('homepage');
+    }
+
     /**
      * Show the register page.
      *
@@ -36,6 +50,8 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
+
+        Auth::login($user);
 
         return redirect()->route('homepage');
     }
