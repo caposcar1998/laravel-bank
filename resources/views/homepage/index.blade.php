@@ -1,9 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>Laboratorio</h1>
+    <h1>Súper banco</h1>
     <p>
-        {{ $account->name }}
+        <a href="{{ route('auth.register') }}" class="btn btn-primary">
+            Registrate
+        </a>
     </p>
 @endsection
-
