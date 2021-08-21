@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomepageController@index');
-
-Route::get('/hello-world/espanol', function() {
-    return 'hola mundo';
-});
+Route::get('/', 'HomepageController@index')->name('homepage');
 
 Route::get('/register', 'AuthController@register')->name('auth.register');
+Route::post('/register', 'AuthController@saveUser')->name('auth.save-user');
