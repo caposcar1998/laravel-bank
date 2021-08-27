@@ -28,6 +28,12 @@
                         Dashboard
                     </a>
                 </li>
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link" href="{{ route('bank.accounts.index') }}">
+                        <i class="c-sidebar-nav-icon cil-puzzle"></i>
+                        Cuentas
+                    </a>
+                </li>
             </ul>
             <button
                 class="c-sidebar-minimizer c-class-toggler"

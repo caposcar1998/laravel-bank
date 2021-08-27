@@ -40,4 +40,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Retrieves relationship with banks
+     */
+    public function accounts() {
+        return $this->hasMany(Account::class);
+    }
 }
