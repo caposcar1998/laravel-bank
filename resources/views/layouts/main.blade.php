@@ -20,7 +20,7 @@
         <div class="container">
             @yield('content')
         </div>
-        <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
+        <script src="https://unpkg.com/@coreui/coreui@3.4.0/dist/js/coreui.bundle.min.js"></script>
         @stack('layout_before_end_body')
     </body>
 </html>

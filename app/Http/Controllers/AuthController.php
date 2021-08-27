@@ -10,6 +10,38 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     /**
+     * Shows login page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $req)
+    {
+        return view('auth.login');
+    }
+
+    /**
+     * Logins the user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function loginUser(Request $req)
+    {
+        $credentials = $req->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $req->session()->regenerate();
+            return redirect()->route('bank.dashboard.index');
+        }
+
+        return back()->withErrors([
+            'email' => 'Las credenciales provistas no son correctas',
+        ]);
+    }
+
+    /**
      * Logs the user out.
      *
      * @return \Illuminate\Http\Response
@@ -53,6 +85,6 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('homepage');
+        return redirect()->route('bank.dashboard.index');
     }
 }
