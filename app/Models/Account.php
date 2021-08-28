@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Account extends Model
 {
@@ -14,7 +15,18 @@ class Account extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'current_balance', 'user_id'];
+    protected $fillable = ['account_number', 'name', 'current_balance', 'user_id'];
+
+    /**
+     * Sets the account number
+     *
+     * @return void
+     */
+    public function setAccountNumber() {
+        $timestamp = nowLocal()->getTimestamp();
+        $userId = $this->user_id;
+        $this->account_number = "{$timestamp}{$userId}";
+    }
 
     /**
      * Retrieves the relationship with the user
