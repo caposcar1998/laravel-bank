@@ -11,7 +11,9 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="account-name">Nombre</label>
+                        <label for="account-name">
+                            Nombre <span class="text-danger font-weight-bold">*</span>
+                        </label>
                         <input class="form-control" id="account-name" type="text" name="name">
                     </div>
                 </div>

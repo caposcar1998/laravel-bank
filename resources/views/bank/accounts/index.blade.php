@@ -16,17 +16,32 @@
                 <table class="table table-responsive-sm table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>Número de cuenta</th>
                             <th>Cuenta</th>
-                            <th>Saldo</th>
+                            <th>Balance</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($accounts as $account)
                             <tr>
-                                <td>{{ $account->id }}</td>
+                                <td>{{ $account->account_number }}</td>
                                 <td>{{ $account->name }}</td>
-                                <td>{{ $account->current_balance }}</td>
+                                <td>
+                                    @money($account->decimal_current_balance)
+                                </td>
+                                <td>
+                                    <a
+                                        class="btn btn-sm btn-outline-primary"
+                                        href="{{ route('bank.accounts-movements.create', compact('account'))}}">
+                                        Registrar movimiento
+                                    </a>
+                                    <a
+                                        class="btn btn-sm btn-outline-primary"
+                                        href="{{ route('bank.accounts-movements.index', compact('account'))}}">
+                                        Historial de movimientos
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

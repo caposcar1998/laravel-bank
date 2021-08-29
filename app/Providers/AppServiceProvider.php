@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if(!Carbon::hasMacro('cloneToLocalTimezone')){
+            Carbon::macro('cloneToLocalTimezone', function () {
+                $tz = config('app.local_timezone');
+                return $this->clone()->setTimezone($tz);
+            });
+        }
     }
 }

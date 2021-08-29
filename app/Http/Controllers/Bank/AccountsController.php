@@ -36,6 +36,7 @@ class AccountsController extends Controller
     public function store(Request $req) {
         $data = $req->validate(['name' => 'required']);
         $data['user_id'] = auth()->user()->id;
+
         Account::create($data);
         return redirect()->route('bank.accounts.index');
     }

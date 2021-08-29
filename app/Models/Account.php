@@ -18,6 +18,23 @@ class Account extends Model
     protected $fillable = ['account_number', 'name', 'current_balance', 'user_id'];
 
     /**
+     * Retrieve the current balance divided by 100 since
+     * the system stores the amount in cents
+     *
+     * @return float
+     */
+    public function getDecimalCurrentBalanceAttribute() : float {
+        return $this->current_balance / 100;
+    }
+
+    /**
+     * Movement relationship
+     */
+    public function movements() {
+        return $this->hasMany(Movement::class);
+    }
+
+    /**
      * Sets the account number
      *
      * @return void
