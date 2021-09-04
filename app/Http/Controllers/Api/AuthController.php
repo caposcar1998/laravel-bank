@@ -53,15 +53,17 @@ class AuthController extends Controller
     }
 
     public function createAccount(Request $request){
-        //$data = 5;
-        //$user = auth()->user()->id;
-        //Account::create([
-        //    "account_number" => $account,
-        //    "user_id" => $user,
-        //]);
+        $bodyContent = json_decode($request->getContent());
+
+        $nombreCuenta =  $bodyContent->{'nombreCuenta'};
+        $user = auth()->user()->id;
+        Account::create([
+            "name" => $nombreCuenta,
+            "user_id" => $user,
+        ]);
         return response()->json([
-            'message' => strval($request)
-        ], 200);
+            'message' => "Creada con exito la cuenta"
+        ], 201);
     }
 
     public function createMovement(Request $request, $account){}
