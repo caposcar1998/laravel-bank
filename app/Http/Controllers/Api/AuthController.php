@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Account;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -35,6 +36,35 @@ class AuthController extends Controller
             'message' => 'Successfully created user!'
         ], 201);
     }
+
+
+    /**
+     * Retrivest hola
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function accounts(Request $request, $account)
+    {
+        
+        $userInfo = \App\Models\Account::where("account_number",$account)->get(); 
+        return response()->json([
+            'message' => strval($userInfo)
+        ], 200);
+    }
+
+    public function createAccount(Request $request){
+        //$data = 5;
+        //$user = auth()->user()->id;
+        //Account::create([
+        //    "account_number" => $account,
+        //    "user_id" => $user,
+        //]);
+        return response()->json([
+            'message' => strval($request)
+        ], 200);
+    }
+
+    public function createMovement(Request $request, $account){}
 
     /**
      * Login the user and retrieve the token

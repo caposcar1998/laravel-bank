@@ -19,10 +19,14 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@saveUser');
     Route::get('logout', 'AuthController@logout');
+    
 });
 
 Route::group([
     'middleware' => 'auth:api'
 ], function() {
     Route::get('user', 'AuthController@user');
+    Route::get('accounts/{account}', 'AuthController@accounts');
+    Route::post('accounts', 'AuthController@createAccount');
+    Route::post('accounts/{account}/movements', 'AuthController@createMovement');
 });
