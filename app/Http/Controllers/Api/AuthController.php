@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Account;
-
+use App\Models\Movement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -66,7 +66,39 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function createMovement(Request $request, $account){}
+    public function createMovement(Request $request, $account){
+        $bodyContent = json_decode($request->getContent());
+        $user = auth()->user()->id;
+        $descripcion = $bodyContent->{'description'};
+        $tipo = $bodyContent->{'type'};
+        $cantidad = $bodyContent -> {'amount'};
+        $accountInfoBal = \App\Models\Account::where("account_number",$account)->pluck('current_balance') ;
+        $accountInfo = \App\Models\Account::where("account_number",$account)->pluck('id') ;
+        $accountId = $accountInfo[0];
+        $balance_anterior=$accountInfoBal[0];
+        $cantidad_nueva = 0;
+        if($tipo==1 ):
+            $cantidad_nueva = $balance_anterior + $cantidad * -1;
+        else:
+            $cantidad_nueva = $balance_anterior + $cantidad * 1;
+        endif;
+
+            
+        Movement::create([
+            "type" => $tipo,
+            "description" => $descripcion,
+            "before_balance" => $balance_anterior,
+            "amount" => $cantidad,
+            "after_balance" => ($cantidad_nueva),
+            'account_id' => $accountId,
+        ]);
+        return response()->json([
+            'message' => 'Movement created'
+        ]);
+        
+
+
+    }
 
     /**
      * Login the user and retrieve the token

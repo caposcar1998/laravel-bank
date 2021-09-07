@@ -87,4 +87,5 @@ class AuthController extends Controller
 
         return redirect()->route('bank.dashboard.index');
     }
+
 }
