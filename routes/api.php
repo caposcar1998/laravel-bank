@@ -25,8 +25,8 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function() {
-    Route::get('user', 'AuthController@user');
-    Route::get('accounts/{account}', 'AuthController@accounts');
-    Route::post('accounts', 'AuthController@createAccount');
-    Route::post('accounts/{account}/movements', 'AuthController@createMovement');
+    Route::get('user', 'AuthController@user')->middleware('auth:api');
+    Route::get('accounts/{account}', 'AuthController@accounts')->middleware('auth:api');
+    Route::post('accounts', 'AuthController@createAccount')->middleware('auth:api');
+    Route::post('accounts/{account}/movements', 'AuthController@createMovement')->middleware('auth:api');
 });
