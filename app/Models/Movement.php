@@ -6,7 +6,7 @@ use App\Traits\CreateUpdateToLocalTimezoneTrait;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Laravel\Passport\HasApiTokens;
 class Movement extends Model
 {
     use CreateUpdateToLocalTimezoneTrait, HasFactory;
