@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('accounts', 'AccountsController@index')
@@ -17,4 +18,10 @@ Route::middleware(['auth'])->group(function() {
         ->name('accounts-movements.store');
     Route::get('/', 'DashboardController@index')
         ->name('dashboard.index');
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function() {
+    Route::get('prueba','MovementLocalAccount@hola')->middleware('auth:api');
 });

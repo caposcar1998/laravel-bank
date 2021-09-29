@@ -84,7 +84,7 @@ class AuthController extends Controller
         endif;
 
             
-        Movement::create([
+        create([
             "type" => $tipo,
             "description" => $descripcion,
             "before_balance" => $balance_anterior,

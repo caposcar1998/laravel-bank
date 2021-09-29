@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($movements as $movement)
+                        @foreach($ as $movement)
                             <tr>
                                 <td>
                                     @datetime($movement->local_created_at)
