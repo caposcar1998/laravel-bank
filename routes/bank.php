@@ -24,4 +24,5 @@ Route::group([
     'middleware' => 'auth:api'
 ], function() {
     Route::get('prueba','MovementLocalAccount@hola')->middleware('auth:api');
+    Route::get('external', 'MovementExternalAccount@transfer')->middleware('auth:api');
 });
