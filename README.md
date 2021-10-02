@@ -1,4 +1,4 @@
-# GD #2 - Implementación API
+# GD #2 y #3 - Implementación API y testing
 
 ## Oscar Contreras Palacios A01655772
 
